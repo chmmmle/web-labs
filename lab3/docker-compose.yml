@@ -1,1 +1,16 @@
-
+version: "3.8"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      
+"8080:80"
+  volumes:
+./Code Task 1:/Code Task 1
+./site.conf:/etc/nginx/conf.d/site.conf
+links:
+php
+php:
+  image: php:8.1-fpm
+  volumes:
+./Code Task 1:/Code Task 1
