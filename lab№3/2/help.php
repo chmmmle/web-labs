@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Результат</title>
-</head>
-<body>
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST["text"])) {
-        $text = $_POST["text"];
-        $word_count = str_word_count($text);
-        $char_count = strlen($text);
-        echo "<h2>Счетчик:</h2>";
-        echo "<p>Кол-во слов:$word_count</p>";
-        echo "<p>Кол-во символов:$char_count</p>";
-    }
 session_start();
 
 if (isset($_SESSION["surname"], $_SESSION["name"], $_SESSION["age"])) {
@@ -23,7 +8,12 @@ if (isset($_SESSION["surname"], $_SESSION["name"], $_SESSION["age"])) {
     echo "Возраст: " . $_SESSION["age"] . "<br>";
 } else {
     echo "Данные не найдены в сессии.";
+if(isset($_SESSION['userData'])) {
+    echo '<ul>';
+    foreach ($_SESSION['userData'] as $key => $value) {
+        echo "<li>$key: $value</li>";
+    }
+    echo '</ul>';
 }
+else echo "Не найдено!";
 ?>
-</body>
-</html>
